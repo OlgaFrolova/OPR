@@ -1,4 +1,4 @@
-//Динамическая загрузка DLL для калькулятора,в особенности тригонометрические функции
+//Р”РёРЅР°РјРёС‡РµСЃРєР°СЏ Р·Р°РіСЂСѓР·РєР° DLL РґР»СЏ РєР°Р»СЊРєСѓР»СЏС‚РѕСЂР°,РІ РѕСЃРѕР±РµРЅРЅРѕСЃС‚Рё С‚СЂРёРіРѕРЅРѕРјРµС‚СЂРёС‡РµСЃРєРёРµ С„СѓРЅРєС†РёРё
 library Trigonom;
 uses
   SysUtils,
@@ -23,7 +23,7 @@ exports TANGENS;
 {$R *.res}
 begin
 end.
-//**********Подключение библеотеки
+//**********РџРѕРґРєР»СЋС‡РµРЅРёРµ Р±РёР±Р»РёРѕС‚РµРєРё
 unit Unit1;
 
 interface
@@ -31,7 +31,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ExtCtrls, StdCtrls, jpeg, Buttons,Math, Menus;
-type TAddReals=function(p1:real):real; stdcall; {тип функции}
+type TAddReals=function(p1:real):real; stdcall;
 type
   TForm1 = class(TForm)
     Image1: TImage;
@@ -64,14 +64,14 @@ procedure TForm1.SpeedButton24Click(Sender: TObject);
  k:real;
 begin
 if edit1.Text<>'' then  k:=strtofloat(Edit1.Text);
- Handle:=LoadLibrary('Trigonom.dll');//Загрузка библиотеки
+ Handle:=LoadLibrary('Trigonom.dll');//Р—Р°РіСЂСѓР·РєР° Р±РёР±Р»РёРѕС‚РµРєРё
  if (Handle=0) then
  begin
- ShowMessage('Библиотека Trigonom.dll не найдена');
+ ShowMessage('Р‘РёР±Р»РёРѕС‚РµРєР° Trigonom.dll РЅРµ РЅР°Р№РґРµРЅР°');
  Halt;
  end;
- @SINUS:=GetProcAddress(Handle,'SINUS');// получение указателя на функцию
- r:=Sin(k);// вызов функции
-  edit1.Text:=floattostr(r);// преобразование типа и вывод рез-та
- FreeLibrary(Handle);// выгрузка библиотеки
+ @SINUS:=GetProcAddress(Handle,'SINUS');// РїРѕР»СѓС‡РµРЅРёРµ СѓРєР°Р·Р°С‚РµР»СЏ РЅР° С„СѓРЅРєС†РёСЋ
+ r:=Sin(k);// РІС‹Р·РѕРІ С„СѓРЅРєС†РёРё
+  edit1.Text:=floattostr(r);// РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ С‚РёРїР° Рё РІС‹РІРѕРґ СЂРµР·-С‚Р°
+ FreeLibrary(Handle);// РІС‹РіСЂСѓР·РєР° Р±РёР±Р»РёРѕС‚РµРєРё
 end;
